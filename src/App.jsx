@@ -10,8 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<AddCard />} />
-        <Route path="/cardList*" element={<CardList />} />
-        <Route path="/detail*" element={<DetailCard />} />
+        <Route path="/cardList/*" element={<CardList />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,15 +1,24 @@
+import axios from "axios";
 import React from "react";
-import { useLocation, useMatch } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background-color: #a29bfe;
+  background-color: #6c5ce7;
   /* background: linear-gradient(135deg, #a29bfe, 75%, rgb(0, 140, 255)); */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Container = styled.div`
@@ -48,7 +57,7 @@ const Box = styled.div`
   flex-direction: column;
 `;
 
-const TextBox = styled.div`
+const Input = styled.input`
   transform-origin: right center;
   /* position: absolute; */
   right: 0px;
@@ -57,23 +66,111 @@ const TextBox = styled.div`
   color: white;
   font-size: 16px;
   background-color: transparent;
-  /* border: 1px solid ${(props) => props.theme.white.lighter}; */
+  border: 1px solid ${(props) => props.theme.white.lighter};
+  width: 200px;
 `;
 
-function DetailCard() {
+const ErrorTxt = styled.span`
+  height: 20px;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
+const Btn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  height: 60px;
+  width: 120px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  transition: all 300ms ease;
+  &:hover {
+    background-color: #ff9f43;
+  }
+`;
+
+function DetailCard({ id, position, name, phoneNumber, email, editCheck, setEditCheck }) {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm({
+    defaultValues: {
+      id: id,
+      position: position,
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email,
+    },
+  });
+
+  const onValid = (data) => {
+    setError("extraError", { message: "Sercer Offline." });
+
+    axios
+      .put("http://localhost:8080/api/edit", {
+        id: data.id,
+        position: data.position,
+        name: data.name,
+        phoneNumber: data.phoneNumber,
+        email: data.email,
+      })
+      .then((Response) => {
+        setEditCheck(!editCheck);
+        window.alert("명함이 수정되었습니다.");
+        navigate("/cardList");
+      });
+  };
+
   return (
     <Wrapper>
-      <Container>
-        <GridBox>
-          <ImgBox />
-          <Box>
-            <TextBox>CEO</TextBox>
-            <TextBox>이재용</TextBox>
-            <TextBox>010-9999-9999</TextBox>
-            <TextBox>samsung@gmail.com</TextBox>
-          </Box>
-        </GridBox>
-      </Container>
+      <Form onSubmit={handleSubmit(onValid)}>
+        <Container>
+          <GridBox>
+            <ImgBox />
+            <Box>
+              <Input {...register("id")} style={{ display: "none" }} />
+              <Input {...register("position")} placeholder="Position" />
+              <ErrorTxt />
+              <Input
+                {...register("name", { required: "필수 항목 입니다." })}
+                placeholder="Name"
+              />
+              <ErrorTxt style={{ color: "red" }}>{errors?.name?.message}</ErrorTxt>
+              <Input
+                {...register("phoneNumber", {
+                  required: "필수 항목 입니다.",
+                  minLength: { value: 10, message: "전화번호가 너무 짧습니다." },
+                  maxLength: { value: 13, message: "전화번호가 너무 깁니다." },
+                  pattern: {
+                    value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
+                    message: "전화번호 형식이 아닙니다.",
+                  },
+                })}
+                placeholder="Phone Number"
+              />
+              <ErrorTxt style={{ color: "red" }}>{errors?.phoneNumber?.message}</ErrorTxt>
+              <Input
+                {...register("email", {
+                  required: "필수 항목 입니다.",
+                  pattern: {
+                    value: /^[A-Za-z0-9._%+-]+@gmail.com$/,
+                    message: "@gmail.com 메일만 허용됩니다",
+                  },
+                })}
+                placeholder="Email"
+              />
+              <ErrorTxt style={{ color: "red" }}>{errors?.email?.message}</ErrorTxt>
+            </Box>
+          </GridBox>
+        </Container>
+        <Btn>Edit Card</Btn>
+      </Form>
     </Wrapper>
   );
 }

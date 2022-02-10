@@ -49,7 +49,7 @@ const Item = styled.li`
 
 const Circle = styled(motion.span)`
   position: absolute;
-  width: 65px;
+  width: 70px;
   height: 5px;
   border-radius: 5px;
   bottom: -5px;

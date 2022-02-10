@@ -59,7 +59,6 @@ const Input = styled.input`
   right: 0px;
   padding: 5px 10px;
   /* padding-left: 40px; */
-  /* z-index: -1; */
   color: white;
   font-size: 16px;
   background-color: transparent;
@@ -101,7 +100,6 @@ function AddCard() {
     },
   });
   const onValid = (data) => {
-    console.log(data);
     setError("extraError", { message: "Sercer Offline." });
     setValue("position", "");
     setValue("name", "");
@@ -116,7 +114,7 @@ function AddCard() {
         email: data.email,
       })
       .then((Response) => {
-        console.log(Response.data);
+        window.alert("명함이 등록되었습니다.");
       });
   };
 
