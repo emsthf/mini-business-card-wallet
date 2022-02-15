@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import AddCard from "./routes/AddCard";
 import CardList from "./routes/CardList";
-import DetailCard from "./routes/DetailCard";
 
 function App() {
   return (

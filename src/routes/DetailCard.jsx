@@ -59,10 +59,8 @@ const Box = styled.div`
 
 const Input = styled.input`
   transform-origin: right center;
-  /* position: absolute; */
   right: 0px;
   padding: 5px 10px;
-  /* padding-left: 40px; */
   color: white;
   font-size: 16px;
   background-color: transparent;
@@ -113,7 +111,7 @@ function DetailCard({ id, position, name, phoneNumber, email, editCheck, setEdit
     setError("extraError", { message: "Sercer Offline." });
 
     axios
-      .put("http://localhost:8080/api/edit", {
+      .put("/api/edit", {
         id: data.id,
         position: data.position,
         name: data.name,
@@ -148,7 +146,7 @@ function DetailCard({ id, position, name, phoneNumber, email, editCheck, setEdit
                   minLength: { value: 10, message: "전화번호가 너무 짧습니다." },
                   maxLength: { value: 13, message: "전화번호가 너무 깁니다." },
                   pattern: {
-                    value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
+                    value: /^01([0|1|6|7|8aaa|9])-?([0-9]{3,4})-?([0-9]{4})$/,
                     message: "전화번호 형식이 아닙니다.",
                   },
                 })}
@@ -159,7 +157,8 @@ function DetailCard({ id, position, name, phoneNumber, email, editCheck, setEdit
                 {...register("email", {
                   required: "필수 항목 입니다.",
                   pattern: {
-                    value: /^[A-Za-z0-9._%+-]+@gmail.com$/,
+                    value:
+                      /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/,
                     message: "@gmail.com 메일만 허용됩니다",
                   },
                 })}

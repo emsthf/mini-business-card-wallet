@@ -22,7 +22,7 @@ const Col = styled.div`
 `;
 
 const Title = styled(motion.h1)`
-  font-family: "Comforter", cursive;
+  font-family: "Redressed", cursive;
   font-size: 60px;
   margin-right: 50px;
   text-shadow: 2px 2px 2px gray;

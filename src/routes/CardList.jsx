@@ -118,7 +118,7 @@ function CardList() {
   // 삭제 펑션
   const delClicked = (id) => {
     if (window.confirm("이 명함을 지우시겠습니까?")) {
-      axios.delete(`http://localhost:8080/api/del/${id}`).then((Response) => {
+      axios.delete(`/api/del/${id}`).then((Response) => {
         setDelcheck(!delCheck);
       });
     } else {
@@ -144,7 +144,7 @@ function CardList() {
 
   useEffect(() => {
     // 데이터 불러오기
-    axios.get("http://localhost:8080/api/getAll").then((Response) => {
+    axios.get("/api/getAll").then((Response) => {
       setCardItem(Response.data);
     });
 

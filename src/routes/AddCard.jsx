@@ -107,7 +107,7 @@ function AddCard() {
     setValue("email", "");
 
     axios
-      .post("http://localhost:8080/api/add", {
+      .post("/api/add", {
         position: data.position,
         name: data.name,
         phoneNumber: data.phoneNumber,
@@ -115,6 +115,9 @@ function AddCard() {
       })
       .then((Response) => {
         window.alert("명함이 등록되었습니다.");
+      })
+      .catch((Error) => {
+        console.log(Error);
       });
   };
 
@@ -149,8 +152,9 @@ function AddCard() {
                 {...register("email", {
                   required: "필수 항목 입니다.",
                   pattern: {
-                    value: /^[A-Za-z0-9._%+-]+@gmail.com$/,
-                    message: "@gmail.com 메일만 허용됩니다",
+                    value:
+                      /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/,
+                    message: "메일만 허용됩니다",
                   },
                 })}
                 placeholder="Email"

@@ -74,7 +74,7 @@ a {
 ::-webkit-scrollbar-button:start:decrement, 
 ::-webkit-scrollbar-button:end:increment {display: block; width: 12px;height: 12px; background: url() rgba(0,0,0,.05);}
 ::-webkit-scrollbar-track {     background: rgba(0,0,0,.05); }
-::-webkit-scrollbar-thumb {  background: rgba(255,255,255,.1); border-radius: 12px;  }
+::-webkit-scrollbar-thumb {  background: rgba(255,255,255,.25); border-radius: 12px;  }
 `;
 
 ReactDOM.render(
