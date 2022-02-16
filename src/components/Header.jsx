@@ -14,6 +14,9 @@ const Nav = styled(motion.nav)`
   padding: 20px 60px;
   color: white;
   z-index: 99;
+  @media screen and (max-width: 500px) {
+    padding: 20px 30px;
+  }
 `;
 
 const Col = styled.div`
@@ -26,6 +29,9 @@ const Title = styled(motion.h1)`
   font-size: 60px;
   margin-right: 50px;
   text-shadow: 2px 2px 2px gray;
+  @media screen and (max-width: 500px) {
+    font-size: 40px;
+  }
 `;
 
 const Items = styled.ul`
@@ -57,6 +63,9 @@ const Circle = styled(motion.span)`
   right: 0;
   margin: 0 auto;
   background-color: ${(props) => props.theme.red};
+  @media screen and (max-width: 500px) {
+    width: 40px;
+  }
 `;
 
 const logoVariants = {

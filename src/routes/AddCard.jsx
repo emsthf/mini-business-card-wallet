@@ -27,11 +27,17 @@ const Container = styled.div`
   width: 500px;
   border-radius: 12px;
   box-shadow: 10px 8px 5px rgba(0, 0, 0, 0.5);
+  @media screen and (max-width: 500px) {
+    width: 400px;
+    margin-top: 55px;
+    height: 260px;
+  }
 `;
 
 const GridBox = styled.div`
   display: grid;
   height: 100%;
+  width: 100%;
   grid-template-columns: repeat(2, 1fr);
   /* grid-template-columns: 1fr 2fr; */
 `;
@@ -51,6 +57,9 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @media screen and (max-width: 500px) {
+    padding-top: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -62,7 +71,12 @@ const Input = styled.input`
   color: white;
   font-size: 16px;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.white.lighter};
+  border: 1px solid #fff;
+  width: 200px;
+  @media screen and (max-width: 500px) {
+    right: 50px;
+    width: 170px;
+  }
 `;
 
 const ErrorTxt = styled.span`

@@ -42,6 +42,9 @@ const TH = styled.th`
   padding: 8px;
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 22px;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 const TR = styled(motion.tr)`
@@ -60,6 +63,9 @@ const TD = styled.td`
   text-align: left;
   padding: 8px;
   vertical-align: middle; // 테이블 수직 중앙 정렬
+  @media screen and (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const IconBox = styled.div`
@@ -97,6 +103,11 @@ const BigBox = styled(motion.div)`
   justify-content: center;
   align-items: center;
   margin-top: 40px;
+  @media screen and (max-width: 500px) {
+    width: 395px;
+    height: 360px;
+    margin-top: 120px;
+  }
 `;
 
 const modalVariants = {

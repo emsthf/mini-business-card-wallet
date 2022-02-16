@@ -30,6 +30,10 @@ const Container = styled.div`
   width: 500px;
   border-radius: 12px;
   box-shadow: 10px 8px 5px rgba(0, 0, 0, 0.5);
+  @media screen and (max-width: 500px) {
+    width: 380px;
+    height: 260px;
+  }
 `;
 
 const GridBox = styled.div`
@@ -55,6 +59,9 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @media screen and (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -66,6 +73,9 @@ const Input = styled.input`
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.white.lighter};
   width: 200px;
+  @media screen and (max-width: 500px) {
+    width: 170px;
+  }
 `;
 
 const ErrorTxt = styled.span`
